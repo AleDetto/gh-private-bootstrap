@@ -42,7 +42,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/AleDetto/gh-private-boot
 
 ---
 
-## Notes:
+## 📌 Notes:
 
 - The **bootstrap.sh** script downloads and executes the specified file **directly in memory**.
 - **WORKDIR** is optional; if omitted, a default temporary folder will be used.
