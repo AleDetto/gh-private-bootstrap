@@ -69,20 +69,19 @@ curl -C - -L -H "Authorization: token $PAT" \
 log_success "$FILE downloaded successfully!"
 
 # ==============================
-# DIVIDER BEFORE EXECUTING FILE
-# ==============================
-echo -e "\n${BLUE}======================================================${RESET}"
-echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
-echo -e "======================================================\n"
-
-# ==============================
 # EXECUTE FILE IF EXECUTABLE
 # ==============================
 if [[ -x "$FILE" ]]; then
+    echo -e "\n${BLUE}======================================================${RESET}"
+    echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
+    echo -e "======================================================\n"
     ./"$FILE"
 else
     log_warn "$FILE is not executable. Making it executable..."
     chmod +x "$FILE"
+    echo -e "\n${BLUE}======================================================${RESET}"
+    echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
+    echo -e "======================================================\n"
     ./"$FILE"
 fi
 
