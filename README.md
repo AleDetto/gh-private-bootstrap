@@ -1,42 +1,47 @@
 # GitHub Private Bootstrap
 
-Un piccolo **script universale** per scaricare e avviare qualsiasi asset da un **repo privato GitHub**.
-Ideale come entrypoint per installare automaticamente il tuo `autoinstall.sh` o altri script di setup.
+A small **universal script** to download and run any asset from a **private GitHub repository**.
+Ideal as an entrypoint to automatically install your `autoinstall.sh` or other setup scripts.
 
 ---
 
-## ⚡ Caratteristiche
+## ⚡ Features
 
-- Funziona con **qualsiasi repo privato GitHub**
-- Resume automatico dei download (`curl -C -`)
-- Idempotente: puoi rilanciare più volte senza problemi
-- Nessun PAT incluso nello script → sicuro
-- Funziona sia se l’asset scaricato deve:
-  - eseguire comandi Linux locali
-  - scaricare altri asset privati
+- Works with **any private GitHub repository**
+- Automatic resume for downloads (`curl -C -`)
+- Idempotent: can be run multiple times without issues
+- **No PAT included in the script** → safe
+- Works whether the downloaded asset needs to:
+  - execute local Linux commands
+  - download additional private assets
 
 ---
 
-## 🛠 Requisiti
+## 🛠 Requirements
 
 - `bash`
 - `curl`
-- Accesso a internet
-- Un **PAT GitHub** con permessi di lettura per il repo privato
+- Internet access
+- A **GitHub PAT** (Personal Access Token) with read permissions for the private repository
 
 ---
 
-## 🚀 Uso
+## 🚀 Usage
 
-Esegui lo script **senza salvarlo in locale**, con tutti i parametri necessari:
+Run the script **without saving it locally**, providing all required parameters:
 
 ```bash
-PAT=IL_TUO_PAT \
-USER=NOME_UTENTE \
-REPO=NOME_REPO \
-TAG=NOME_TAG \ #(es. v1.0.0)
-FILE=NOME_FILE.sh \ #(il file da scaricare ed eseguire dal repo github privato)
-WORKDIR=directory/salvataggio/file \ #(opzionale, se omessa verrà usata una directory di default)
+PAT=YOUR_PAT \
+USER=USERNAME \
+REPO=REPO_NAME \
+TAG=TAG_NAME \
+FILE=FILE_TO_DOWNLOAD_AND_EXECUTE.sh \
+WORKDIR=directory/to/save/files \
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/AleDetto/gh-private-bootstrap/main/bootstrap.sh)"
 ```
 
+## Notes:
+
+- The **bootstrap.sh** script downloads and executes the specified file **directly in memory**.
+- **WORKDIR** is optional; if omitted, a default temporary folder will be used.
+- The downloaded asset (**FILE**) can either **run local commands** or **download additional assets** as needed because it will inherit all the **ENV** vars declared for **bootstrap.sh**.
