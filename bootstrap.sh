@@ -19,6 +19,7 @@ log_error()   { echo -e "${RED}[BOOTSTRAP][ERROR]${RESET} $1"; }
 # ==============================
 # ASCII LOGO
 # ==============================
+echo -e "${LOGO}${RESET}"
 echo -e "${LOGO}	   ██████╗     ██████╗     ██████╗ 	${RESET}"
 echo -e "${LOGO}	  ██╔════╝     ██╔══██╗    ██╔══██╗	${RESET}"
 echo -e "${LOGO}	  ██║  ███╗    ██████╔╝    ██████╔╝	${RESET}"
