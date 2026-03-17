@@ -9,11 +9,23 @@ YELLOW="\033[1;33m"
 RED="\033[1;31m"
 BLUE="\033[1;34m"
 RESET="\033[0m"
+LOGO="\033[1;35m"
 
 log_info()    { echo -e "${BLUE}[BOOTSTRAP-INFO]${RESET} $1"; }
 log_success() { echo -e "${GREEN}[BOOTSTRAP-OK]${RESET} $1"; }
 log_warn()    { echo -e "${YELLOW}[BOOTSTRAP-WARN]${RESET} $1"; }
 log_error()   { echo -e "${RED}[BOOTSTRAP-ERROR]${RESET} $1"; }
+
+# ==============================
+# ASCII LOGO
+# ==============================
+echo -e "${LOGO}	   ██████╗     ██████╗     ██████╗ 	${RESET}"
+echo -e "${LOGO}	  ██╔════╝     ██╔══██╗    ██╔══██╗	${RESET}"
+echo -e "${LOGO}	  ██║  ███╗    ██████╔╝    ██████╔╝	${RESET}"
+echo -e "${LOGO}	  ██║   ██║    ██╔═══╝     ██╔══██╗	${RESET}"
+echo -e "${LOGO}	  ╚██████╔╝    ██║         ██████╔╝	${RESET}"
+echo -e "${LOGO}	   ╚═════╝     ╚═╝         ╚═════╝ 	${RESET}"
+echo -e "${LOGO}           GitHub      Private    Bootstrap${RESET}\n"
 
 # ==============================
 # CHECK VARIABLES
