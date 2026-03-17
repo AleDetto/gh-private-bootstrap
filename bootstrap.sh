@@ -25,7 +25,7 @@ echo -e "${LOGO}	  ██║  ███╗    ██████╔╝    ██
 echo -e "${LOGO}	  ██║   ██║    ██╔═══╝     ██╔══██╗	${RESET}"
 echo -e "${LOGO}	  ╚██████╔╝    ██║         ██████╔╝	${RESET}"
 echo -e "${LOGO}	   ╚═════╝     ╚═╝         ╚═════╝ 	${RESET}"
-echo -e "${LOGO}           GitHub      Private    Bootstrap${RESET}\n"
+echo -e "${LOGO}           GitHub      Private    Bootstrap   (v0.5.2)${RESET}\n"
 
 # ==============================
 # CHECK VARIABLES
@@ -78,7 +78,8 @@ curl -C - -L -H "Authorization: token $PAT" \
      "https://api.github.com/repos/$USER/$REPO/releases/assets/$ASSET_ID" \
      -o "$FILE"
 
-log_success "\n$FILE downloaded successfully!"
+echo "\n"
+log_success "$FILE downloaded successfully!"
 
 # ==============================
 # EXECUTE FILE IF EXECUTABLE
