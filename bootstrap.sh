@@ -53,4 +53,5 @@ if [[ -x "$FILE" ]]; then
     ./"$FILE"
 else
     echo "Attenzione: $FILE non è eseguibile. Scaricato solo il file."
+    chmod +x $FILE
 fi
