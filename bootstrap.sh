@@ -72,13 +72,15 @@ fi
 # ==============================
 # DOWNLOAD ASSET WITH RESUME
 # ==============================
-log_info "Downloading $FILE with ID $ASSET_ID (automatic resume)...\n"
+log_info "Downloading $FILE with ID $ASSET_ID (automatic resume)..."
+echo -e "${BLUE}======================================================${RESET}\n"
+
 curl -C - -L -H "Authorization: token $PAT" \
      -H "Accept: application/octet-stream" \
      "https://api.github.com/repos/$USER/$REPO/releases/assets/$ASSET_ID" \
      -o "$FILE"
 
-echo "\n"
+echo -e "\n${BLUE}======================================================${RESET}"
 log_success "$FILE downloaded successfully!"
 
 # ==============================
