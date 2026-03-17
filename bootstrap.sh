@@ -25,7 +25,7 @@ echo -e "${LOGO}	  ██║  ███╗    ██████╔╝    ██
 echo -e "${LOGO}	  ██║   ██║    ██╔═══╝     ██╔══██╗	${RESET}"
 echo -e "${LOGO}	  ╚██████╔╝    ██║         ██████╔╝	${RESET}"
 echo -e "${LOGO}	   ╚═════╝     ╚═╝         ╚═════╝ 	${RESET}"
-echo -e "${LOGO}           GitHub      Private    Bootstrap   (v0.5.2)${RESET}\n"
+echo -e "${LOGO}           GitHub      Private    Bootstrap   (v0.5.3)${RESET}\n"
 
 # ==============================
 # CHECK VARIABLES
