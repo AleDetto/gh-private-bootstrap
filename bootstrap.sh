@@ -74,19 +74,19 @@ log_success "$FILE downloaded successfully!"
 if [[ -x "$FILE" ]]; then
     echo -e "\n${BLUE}======================================================${RESET}"
     echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
-    echo -e "\n${BLUE}======================================================${RESET}"
+    echo -e "${BLUE}======================================================${RESET}\n"
     ./"$FILE"
 else
     log_warn "$FILE is not executable. Making it executable..."
     chmod +x "$FILE"
     echo -e "\n${BLUE}======================================================${RESET}"
     echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
-    echo -e "\n${BLUE}======================================================${RESET}"
+    echo -e "${BLUE}======================================================${RESET}\n"
     ./"$FILE"
 fi
 
 echo -e "\n${BLUE}======================================================${RESET}"
 echo -e "${BLUE}=== FINISHED EXECUTION OF $FILE ===${RESET}"
-echo -e "\n${BLUE}======================================================${RESET}"
+echo -e "${BLUE}======================================================${RESET}\n"
 
 log_success "Bootstrap completed successfully!"
