@@ -10,10 +10,10 @@ RED="\033[1;31m"
 BLUE="\033[1;34m"
 RESET="\033[0m"
 
-log_info()    { echo -e "${BLUE}[INFO]${RESET} $1"; }
-log_success() { echo -e "${GREEN}[OK]${RESET} $1"; }
-log_warn()    { echo -e "${YELLOW}[WARN]${RESET} $1"; }
-log_error()   { echo -e "${RED}[ERROR]${RESET} $1"; }
+log_info()    { echo -e "${BLUE}[BOOTSTRAP-INFO]${RESET} $1"; }
+log_success() { echo -e "${GREEN}[BOOTSTRAP-OK]${RESET} $1"; }
+log_warn()    { echo -e "${YELLOW}[BOOTSTRAP-WARN]${RESET} $1"; }
+log_error()   { echo -e "${RED}[BOOTSTRAP-ERROR]${RESET} $1"; }
 
 # ==============================
 # CHECK VARIABLES
@@ -69,16 +69,25 @@ curl -C - -L -H "Authorization: token $PAT" \
 log_success "$FILE downloaded successfully!"
 
 # ==============================
+# DIVIDER BEFORE EXECUTING FILE
+# ==============================
+echo -e "\n${BLUE}======================================================${RESET}"
+echo -e "${BLUE}=== STARTING EXECUTION OF $FILE ===${RESET}"
+echo -e "======================================================\n"
+
+# ==============================
 # EXECUTE FILE IF EXECUTABLE
 # ==============================
 if [[ -x "$FILE" ]]; then
-    log_info "Executing $FILE..."
     ./"$FILE"
 else
     log_warn "$FILE is not executable. Making it executable..."
     chmod +x "$FILE"
-    log_info "Rerunning $FILE..."
     ./"$FILE"
 fi
+
+echo -e "\n${BLUE}======================================================${RESET}"
+echo -e "${BLUE}=== FINISHED EXECUTION OF $FILE ===${RESET}"
+echo -e "======================================================\n"
 
 log_success "Bootstrap completed successfully!"
