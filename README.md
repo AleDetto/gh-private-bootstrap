@@ -1,3 +1,5 @@
+<img src="assets/logo.png" alt="Bootstrap Logo" width="100">
+
 # GitHub Private Bootstrap
 
 A small **universal script** to download and run any asset from a **private GitHub repository**.
