@@ -47,3 +47,11 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/AleDetto/gh-private-boot
 - The **bootstrap.sh** script downloads and executes the specified file **directly in memory**.
 - **WORKDIR** is optional; if omitted, a default temporary folder will be used.
 - The downloaded asset (**FILE**) can either **run local commands** or **download additional assets** as needed because it will inherit all the **ENV** vars declared for **bootstrap.sh**.
+
+---
+
+## 📸 Example Output
+
+Here's an example of the terminal output when running the bootstrap + test install script:
+
+![Terminal output](assets/screenshot-terminal.png)
