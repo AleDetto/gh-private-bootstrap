@@ -11,10 +11,10 @@ BLUE="\033[1;34m"
 RESET="\033[0m"
 LOGO="\033[1;35m"
 
-log_info()    { echo -e "${BLUE}[BOOTSTRAP-INFO]${RESET} $1"; }
-log_success() { echo -e "${GREEN}[BOOTSTRAP-OK]${RESET} $1"; }
-log_warn()    { echo -e "${YELLOW}[BOOTSTRAP-WARN]${RESET} $1"; }
-log_error()   { echo -e "${RED}[BOOTSTRAP-ERROR]${RESET} $1"; }
+log_info()    { echo -e "${BLUE}[BOOTSTRAP][INFO]${RESET} $1"; }
+log_success() { echo -e "${GREEN}[BOOTSTRAP][OK]${RESET} $1"; }
+log_warn()    { echo -e "${YELLOW}[BOOTSTRAP][WARN]${RESET} $1"; }
+log_error()   { echo -e "${RED}[BOOTSTRAP][ERROR]${RESET} $1"; }
 
 # ==============================
 # ASCII LOGO
