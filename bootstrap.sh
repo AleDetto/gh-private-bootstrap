@@ -11,9 +11,17 @@ if [ -z "${PAT:-}" ] || [ -z "${USER:-}" ] || [ -z "${REPO:-}" ] || [ -z "${TAG:
 fi
 
 # ==============================
+# CHECK WORKDIR
+# ==============================
+WORKDIR_DEFAULT="bootstrap_tmp"
+if [ -z "${WORKDIR:-}" ]; then
+    echo "WORKDIR non definita... sovrascrivo con WORKDIR_DEFAULT=${WORKDIR_DEFAULT}"
+    WORKDIR=$WORKDIR_DEFAULT
+fi
+
+# ==============================
 # PREPARAZIONE CARTELLA TEMP
 # ==============================
-WORKDIR="bootstrap_tmp"
 mkdir -p "$WORKDIR"
 cd "$WORKDIR"
 

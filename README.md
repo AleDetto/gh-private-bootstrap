@@ -36,6 +36,7 @@ USER=NOME_UTENTE \
 REPO=NOME_REPO \
 TAG=NOME_TAG \ #(es. v1.0.0)
 FILE=NOME_FILE.sh \ #(il file da scaricare ed eseguire dal repo github privato)
+WORKDIR=directory/salvataggio/file \ #(opzionale, se omessa verrà usata una directory di default)
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/AleDetto/gh-private-bootstrap/main/bootstrap.sh)"
 ```
 
