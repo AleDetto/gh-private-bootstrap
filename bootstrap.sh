@@ -2,11 +2,25 @@
 set -euo pipefail
 
 # ==============================
-# CHECK VARIABILI
+# COLOR DEFINITIONS
+# ==============================
+GREEN="\033[1;32m"
+YELLOW="\033[1;33m"
+RED="\033[1;31m"
+BLUE="\033[1;34m"
+RESET="\033[0m"
+
+log_info()    { echo -e "${BLUE}[INFO]${RESET} $1"; }
+log_success() { echo -e "${GREEN}[OK]${RESET} $1"; }
+log_warn()    { echo -e "${YELLOW}[WARN]${RESET} $1"; }
+log_error()   { echo -e "${RED}[ERROR]${RESET} $1"; }
+
+# ==============================
+# CHECK VARIABLES
 # ==============================
 if [ -z "${PAT:-}" ] || [ -z "${USER:-}" ] || [ -z "${REPO:-}" ] || [ -z "${TAG:-}" ] || [ -z "${FILE:-}" ]; then
-    echo "Errore: devi impostare le seguenti variabili d'ambiente:"
-    echo "PAT=... USER=... REPO=... TAG=... FILE=... bash -c \"\$(curl -fsSL https://link-al-tuo-bootstrap.sh)\""
+    log_error "You must set the following environment variables:"
+    echo "PAT=... USER=... REPO=... TAG=... FILE=... bash -c \"\$(curl -fsSL https://link-to-your-bootstrap.sh)\""
     exit 1
 fi
 
@@ -15,20 +29,21 @@ fi
 # ==============================
 WORKDIR_DEFAULT="bootstrap_tmp"
 if [ -z "${WORKDIR:-}" ]; then
-    echo "WORKDIR non definita... sovrascrivo con WORKDIR_DEFAULT=${WORKDIR_DEFAULT}"
+    log_warn "WORKDIR not defined... using default WORKDIR=${WORKDIR_DEFAULT}"
     WORKDIR=$WORKDIR_DEFAULT
 fi
 
 # ==============================
-# PREPARAZIONE CARTELLA TEMP
+# PREPARE TEMP DIRECTORY
 # ==============================
+log_info "Creating temporary directory: $WORKDIR"
 mkdir -p "$WORKDIR"
 cd "$WORKDIR"
 
 # ==============================
-# TROVA ASSET ID TRAMITE GITHUB API
+# GET ASSET ID VIA GITHUB API
 # ==============================
-echo "Cerco $FILE nella release $TAG del repo $USER/$REPO..."
+log_info "Looking for $FILE in release $TAG of repo $USER/$REPO..."
 ASSET_ID=$(curl -s -H "Authorization: token $PAT" \
   "https://api.github.com/repos/$USER/$REPO/releases/tags/$TAG" \
   | grep "\"name\": \"$FILE\"" -B 3 \
@@ -38,31 +53,32 @@ ASSET_ID=$(curl -s -H "Authorization: token $PAT" \
   | tr -d ',')
 
 if [ -z "$ASSET_ID" ]; then
-    echo "Errore: asset $FILE non trovato nella release $TAG"
+    log_error "Asset $FILE not found in release $TAG"
     exit 1
 fi
 
 # ==============================
-# SCARICO ASSET CON RESUME
+# DOWNLOAD ASSET WITH RESUME
 # ==============================
-echo "Scarico $FILE con ID $ASSET_ID (resume automatico)..."
+log_info "Downloading $FILE with ID $ASSET_ID (automatic resume)..."
 curl -C - -L -H "Authorization: token $PAT" \
      -H "Accept: application/octet-stream" \
      "https://api.github.com/repos/$USER/$REPO/releases/assets/$ASSET_ID" \
      -o "$FILE"
 
-echo "$FILE scaricato con successo!"
+log_success "$FILE downloaded successfully!"
 
 # ==============================
-# LANCIO FILE SE ESEGUIBILE
+# EXECUTE FILE IF EXECUTABLE
 # ==============================
 if [[ -x "$FILE" ]]; then
-    echo "Eseguo $FILE..."
+    log_info "Executing $FILE..."
     ./"$FILE"
 else
-    echo "Attenzione: $FILE non è eseguibile. Scaricato solo il file."
-    echo "Rendo $FILE eseguibile..."
-    chmod +x $FILE
-    echo "Rieseguo $FILE..."
+    log_warn "$FILE is not executable. Making it executable..."
+    chmod +x "$FILE"
+    log_info "Rerunning $FILE..."
     ./"$FILE"
 fi
+
+log_success "Bootstrap completed successfully!"

@@ -40,6 +40,8 @@ WORKDIR=directory/to/save/files \
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/AleDetto/gh-private-bootstrap/main/bootstrap.sh)"
 ```
 
+---
+
 ## Notes:
 
 - The **bootstrap.sh** script downloads and executes the specified file **directly in memory**.
